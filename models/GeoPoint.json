@@ -1,0 +1,49 @@
+{
+  "title": "GeoPoint",
+  "type": "object",
+  "x-examples": {
+    "example-2": {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80968,
+          32.160318,
+          50
+        ]
+      }
+    }
+  },
+  "properties": {
+    "geometry": {
+      "type": "object",
+      "description": "this object is built according to the geojson standard",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Point"
+          ],
+          "description": "type - Point"
+        },
+        "coordinates": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "An array of coordinates: first item - longitude, second item - latitude, third item - height",
+          "items": {
+            "type": "number",
+            "example": 34.80968,
+            "format": "double"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "geometry"
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CurrentLocation",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "summary": "CurrentLocation - UDP",
+        "operationId": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrentLocation"
+              },
+              "examples": {
+                "example-2": {
+                  "value": {
+                    "CurrentLocation": {
+                      "frameTime ": 1621111588206,
+                      "sendTime": 1621111588306,
+                      "location": {
+                        "geometry": {
+                          "type": "Point",
+                          "coordinates": [
+                            34.80968,
+                            34.80968,
+                            34.80968
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "description": "CurrentLocation from External Location Service - UDP"
+        },
+        "description": "CurrentLocation from External Location Service - UDP"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CurrentLocation": {
+        "title": "CurrentLocation",
+        "type": "object",
+        "properties": {
+          "CurrentLocation": {
+            "type": "object",
+            "required": [
+              "frameTime ",
+              "sendTime",
+              "location"
+            ],
+            "properties": {
+              "frameTime ": {
+                "type": "number",
+                "description": "Timestamp of the received frame\nMilliseconds from 01.01.1970 00:00:00",
+                "example": 1621111588206
+              },
+              "sendTime": {
+                "type": "number",
+                "description": "Send location timestamp\nMilliseconds from 01.01.1970 00:00:00",
+                "example": 1621111588306
+              },
+              "location": {
+                "$ref": "#/components/schemas/GeoPoint"
+              }
+            }
+          }
+        },
+        "required": [
+          "CurrentLocation"
+        ]
+      },
+      "GeoPoint": {
+        "title": "GeoPoint",
+        "type": "object",
+        "x-examples": {
+          "example-2": {
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                34.80968,
+                32.160318,
+                50
+              ]
+            }
+          }
+        },
+        "properties": {
+          "geometry": {
+            "type": "object",
+            "description": "this object is built according to the geojson standard",
+            "required": [
+              "type",
+              "coordinates"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Point"
+                ],
+                "description": "type - Point"
+              },
+              "coordinates": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "An array of coordinates: first item - longitude, second item - latitude, third item - height",
+                "items": {
+                  "type": "number",
+                  "example": 34.80968,
+                  "format": "double"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "geometry"
+        ]
+      }
+    }
+  }
+}

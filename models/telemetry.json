@@ -1,0 +1,42 @@
+{
+  "title": "telemetry",
+  "type": "object",
+  "properties": {
+    "airVehicleTelemethry": {
+      "type": "object",
+      "properties": {
+        "timestamp ": {
+          "type": "number",
+          "description": "Timestamp of the airVehicle telemethry\nMilliseconds from 01.01.1970 00:00:00",
+          "example": 1621111588206
+        },
+        "height": {
+          "type": "number",
+          "description": "Height of the Air Vehicle (Drone) - from launch point (in meters)",
+          "example": 100
+        },
+        "heading": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 359.9,
+          "example": 30,
+          "description": "Air Vehicle Heading (azimuth)\nfrom 0 (NORTH) to 359.9 CLOCKWISE"
+        }
+      },
+      "required": [
+        "timestamp ",
+        "height",
+        "heading"
+      ]
+    }
+  },
+  "x-examples": {
+    "example-1": {
+      "airVehicleTelemethry": {
+        "timestamp ": 1621111588206,
+        "height": 100,
+        "heading": 30
+      }
+    }
+  }
+}

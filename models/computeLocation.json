@@ -1,0 +1,48 @@
+{
+  "title": "computeLocation",
+  "type": "object",
+  "properties": {
+    "action ": {
+      "type": "string",
+      "enum": [
+        "start",
+        "stop"
+      ]
+    },
+    "location": {
+      "$ref": "./GeoPoint.json"
+    }
+  },
+  "required": [
+    "action ",
+    "location"
+  ],
+  "x-examples": {
+    "example-1": {
+      "action ": "start",
+      "location": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            34.80968,
+            32.160318,
+            50
+          ]
+        }
+      }
+    },
+    "example-2": {
+      "action ": "stop",
+      "location": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            34.80968,
+            32.160318,
+            50
+          ]
+        }
+      }
+    }
+  }
+}

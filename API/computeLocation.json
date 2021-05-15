@@ -1,0 +1,197 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "computeLocation",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/computeLocation": {
+      "post": {
+        "summary": "Start Stop Compute Location",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandResponse"
+                },
+                "examples": {
+                  "example-2": {
+                    "value": {
+                      "status": "success",
+                      "description": "status change to started"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComputeLocation"
+              },
+              "examples": {
+                "example-2": {
+                  "value": {
+                    "action ": "start",
+                    "location": {
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                          34.80968,
+                          32.160318,
+                          50
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "the command for start compute locations"
+        },
+        "description": "the command for start compute locations"
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "GeoPoint": {
+        "title": "GeoPoint",
+        "type": "object",
+        "x-examples": {
+          "example-2": {
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                34.80968,
+                32.160318,
+                50
+              ]
+            }
+          }
+        },
+        "properties": {
+          "geometry": {
+            "type": "object",
+            "description": "this object is built according to the geojson standard",
+            "required": [
+              "type",
+              "coordinates"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Point"
+                ],
+                "description": "type - Point"
+              },
+              "coordinates": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "An array of coordinates: first item - longitude, second item - latitude, third item - height",
+                "items": {
+                  "type": "number",
+                  "example": 34.80968,
+                  "format": "double"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "geometry"
+        ]
+      },
+      "CommandResponse": {
+        "title": "commandResponse",
+        "type": "object",
+        "x-examples": {
+          "example-2": {
+            "status": "success",
+            "description": "status change to started"
+          }
+        },
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "fail"
+            ],
+            "example": "success"
+          },
+          "description": {
+            "type": "string",
+            "example": "status change to started"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ComputeLocation": {
+        "title": "computeLocation",
+        "type": "object",
+        "properties": {
+          "action ": {
+            "type": "string",
+            "enum": [
+              "start",
+              "stop"
+            ]
+          },
+          "location": {
+            "$ref": "#/components/schemas/GeoPoint"
+          }
+        },
+        "required": [
+          "action ",
+          "location"
+        ],
+        "x-examples": {
+          "example-1": {
+            "action ": "start",
+            "location": {
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  34.80968,
+                  32.160318,
+                  50
+                ]
+              }
+            }
+          },
+          "example-2": {
+            "action ": "stop",
+            "location": {
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  34.80968,
+                  32.160318,
+                  50
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

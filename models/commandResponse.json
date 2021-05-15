@@ -1,0 +1,27 @@
+{
+  "title": "commandResponse",
+  "type": "object",
+  "x-examples": {
+    "example-2": {
+      "status": "success",
+      "description": "status change to started"
+    }
+  },
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "fail"
+      ],
+      "example": "success"
+    },
+    "description": {
+      "type": "string",
+      "example": "status change to started"
+    }
+  },
+  "required": [
+    "status"
+  ]
+}

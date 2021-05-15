@@ -1,0 +1,32 @@
+{
+  "title": "CurrentLocation",
+  "type": "object",
+  "properties": {
+    "CurrentLocation": {
+      "type": "object",
+      "required": [
+        "frameTime ",
+        "sendTime",
+        "location"
+      ],
+      "properties": {
+        "frameTime ": {
+          "type": "number",
+          "description": "Timestamp of the received frame\nMilliseconds from 01.01.1970 00:00:00",
+          "example": 1621111588206
+        },
+        "sendTime": {
+          "type": "number",
+          "description": "Send location timestamp\nMilliseconds from 01.01.1970 00:00:00",
+          "example": 1621111588306
+        },
+        "location": {
+          "$ref": "./GeoPoint.json"
+        }
+      }
+    }
+  },
+  "required": [
+    "CurrentLocation"
+  ]
+}
